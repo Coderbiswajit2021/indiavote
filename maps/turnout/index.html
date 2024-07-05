@@ -1,0 +1,1884 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    
+<!-- Mirrored from www.indiavotes.com/maps/turnout/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Jul 2024 04:56:51 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+            <link rel="stylesheet" href="../../css/autocomplete.css" />
+            <link rel="stylesheet" href="../../assets/leaflet/dist/leaflet.html" />
+            <link rel="stylesheet" href="../../assets/leaflet/l.geosearch.html" />
+            <!--[if lte IE 8]><link rel="stylesheet" href="http://192.168.11.17/indiavotes/trunk/assets/leaflet/dist/leaflet.ie.css" /><![endif]-->
+            <link rel="stylesheet" href="../../assets/leaflet/debug/css/mobile.html" />
+            <style>
+                body{background-color:#BCD8F8}
+                .autocomplete{width:227px !important}
+                html, body{overflow:hidden;-webkit-overflow-scrolling:touch;}
+                .wax-popup a{text-decoration:underline}
+                ol li{padding-bottom:11px;}
+                .defaultClass{color:#666666;width:100%;}
+                .searchFilter {
+                    float:left;
+                    width:100%;
+                    padding-top:10px;
+					border-top:1px solid #eeeeee;
+                }
+                .leaflet-left1{left:311px!important;}
+                .titleSelect {
+                    color:#333333;
+                    font-weight:bold;
+                    margin-right:10px;
+                }
+                .searchFilter input, .searchFilter select {
+                    border:1px solid #CCC;
+                    padding:4px 0;
+                    width:100%;
+                }
+                .searchFilter strong{line-height:2em!important}
+                .btnInput{width:auto!important;padding:5px!important;color:#FFFFFF;background:#09C;font-size:13px;font-weight:bold;text-align:center;text-indent:0px!important; cursor:pointer}
+                .searchFilter input{text-indent:5px;}
+                .slideArrowHide {
+                    left:-33px;
+                    top:4px;
+                    background:url('../../images/slideArrowHide.png') no-repeat 0 0!important;
+                }
+                .slideToggle {
+                    float:left;
+                    position:relative;
+                    display:inline-block;
+                    width:25px;
+                    height:25px;
+                    background:url('../../images/slideArrow.png') no-repeat 0 0;
+                    margin-top:77px;
+                    z-index:9999!important
+                }
+                #mapTab {
+                    width:25px;
+                    height:25px;
+                    display:block;
+                    cursor:pointer;
+                    font-size:24px;
+                    text-align:center;
+                    color:#ffffff;
+
+                }
+                img {
+                    border:none
+                }
+                a {
+                    text-decoration:none;
+                    outline:none
+                }
+                #mapPanel {
+                    left:0px;
+                    top:50px;
+                    border-right:2px #CCCCCC solid;
+                    background-color:#ffffff;
+                    height:870em;
+                    float:left;
+                    width:0;/*new line*/
+                }
+                #mapPanel .content {
+                    width:290px;
+                    float:left;
+                    padding:10px;
+                    position:relative;
+                    margin-top:70px;
+                }
+                .leaflet-container {
+                    background-color:#BCD8F8
+                }
+                .topPanel {
+                    padding:0 1%;
+                    z-index:9900;
+                    position:absolute;
+                    width:278px;
+                    top:0;
+                    height:78px;
+                    left:0;
+                }
+                .topPanel img {
+                    position:absolute;
+                    top:7px;
+                    
+                }
+                .pcacTitle {
+                    color:#111111;
+                    position:fixed;
+                    top:5px;
+                    left:335px;
+                    font-size:16px;
+                    z-index:9999;
+                    box-shadow:0px 3px 3px #666;	-moz-box-shadow:0px 3px 3px #666;/* Firefox */	-webkit-box-shadow:0px 3px 3px #666;/* Safari and Chrome */
+                    filter:progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color=#666),  progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=180, Color=#666),  progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=180, Color=#666),  progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=180, Color=#666);
+                    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color=#666),progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=180, Color=#666),progid:DXImageTransform.Microsoft.Shadow(Strength=100, Direction=270, Color=#666),progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=360, Color=#666)";
+                    background-color:#f0f0f0;border:2px solid #ffffff;padding:4px 10px;position:absolute;opacity:0.7;z-index:9999;border-radius:5px;}
+                .pcacTitle a {
+                    color:#009;
+                    font-size:12px;
+                    text-decoration:none
+                }
+                .pcacTitle a:hover {
+                    color:#333333
+                }
+                .wax-tooltip {
+                    position:absolute;
+                    right:10px;
+                    top:100px;
+                    padding:13px;
+                    background-color:#ffffff;
+                    border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    width: 250px;
+                    z-index: 5;
+                    font-size:11px;
+                    color:#555;
+                    text-transform:capitalize
+                }
+                .wax-tooltip strong {
+                    color:#333
+                }
+                .wax-tooltip span {
+                    color:#ff5555;
+                    text-transform:capitalize;
+                    font-weight:bold
+                }
+                .wax-tooltip .c2 {
+                    color:green;
+                    text-transform:capitalize;
+                    font-weight:bold
+                }
+                .txtFormat {
+                    font-size:13px;
+                    font-weight:bold;
+                    color:#555!important
+                }
+                hr {
+                    border:0px dashed #ececec;
+                    border-bottom-width:1px;
+                    background-color:none;
+                    height:0;
+                    width:100%;
+                    margin:15px 0;
+                    padding:0;
+                }
+                .wax-popup hr, .wax-tooltip hr, .leaflet-popup-content hr{margin:5px 0!important}
+                .searchTop {
+                    padding:10px 22px;
+                    float:left;
+                    -moz-box-shadow: 10px 10px 5px #888;
+                    -webkit-box-shadow: 10px 10px 5px #888;
+                    box-shadow: 10px 10px 5px #888;
+                    background-color:#ececec;
+                    z-index:999;
+                    width:100%
+                }
+                .searchTop input {
+                    vertical-align:middle;
+                    font-size:16px;
+                    padding:5px 8px;
+                    color:#333333;
+                }
+                .searchTop strong {
+                    font-size: 18px;
+                    color:blue;
+                    font-family: Arial;
+                    line-height:42px;
+                }
+                .searchTop .searchTxt {
+                    width:450px;
+                }
+                .clearBoth {
+                    clear:both
+                }
+                .wax-legend .legend-title, .my-legend .legend-title {
+                    text-align:left;
+                    margin-bottom: 5px;
+                    font-weight: bold;
+                    font-size: 11px;
+                    font-family:arial;
+                }
+                .my-legend .legend-scale ul {
+                    margin: 0;
+                    margin-bottom: 5px;
+                    padding: 0;
+                    float: left;
+                    list-style: none;
+                }
+                .my-legend .legend-scale ul li {
+                    font-size: 10px;
+                    list-style: none;
+                    margin-left: 0;
+                    line-height: 18px;
+                    margin-bottom: 4px;
+                    font-family:arial;
+                }
+                .my-legend ul.legend-labels li span {
+                    display: block;
+                    float: left;
+                    height: 16px;
+                    width: 30px;
+                    margin-right: 5px;
+                    margin-left: 0;
+                    border: 1px solid #999;
+                    font-family:arial;
+                }
+                .my-legend .legend-source {
+                    font-size: 10px;
+                    color: #999;
+                    clear: both;
+                }
+                .my-legend a {
+                    color: #777;
+                    font-family:arial;
+                    font-size:11px
+                }
+                .leaflet-bottom {
+                    display:none
+                }
+                .show_legend{display: block; float: left; position: fixed; right: 10px; z-index: 999; background:url('../../images/legendArrow.png') no-repeat 11px 9px #ececec; border-radius: 5px 5px 0px 0px; bottom: 0px; height: 20px; font-size: 12px; padding: 4px 13px 4px 31px;width:77px}
+                .slidingDiv{height:200px;float:left;position:absolute;bottom:23px;right:10px;z-index:999;padding:10px;border-radius:5px;background:#ffffff!important}
+
+                .show_legend_hide{display: block; float: left; position: fixed; right: 10px; z-index: 999; background:url('../../images/legendArrowHide.png') no-repeat 11px 9px #ececec; border-radius: 5px 5px 0px 0px; bottom: 0px; height: 20px; font-size: 12px; padding: 4px 13px 4px 31px;width:77px}
+                .close, .leaflet-container a.leaflet-popup-close-button{background-color: #444444;border: 2px solid #ECECEC;border-radius: 5px 5px 5px 5px;color: #FFFFFF!important;display: block;font-size: 11px;font-weight: bold;padding: 0 5px;position: absolute;right: 0;top: 0;width:auto;height:auto;line-height:16px;text-decoration:none!important}
+
+                .mapGuide{font-size:13px;padding:5px 0;position:fixed;bottom:0;left:4px;width:304px;z-index:9000;text-align:center}
+                .mapGuide a{margin-right:8px;font-size:13px;color:blue;display:inline-block;padding:0 0 0 5px;}
+                .mapGuide img{vertical-align:middle}
+                .mapGuide a:hover{color:#111111}
+                .mapGuide a.noneGuide{border:none;}
+                .close_contest{
+                    font-size: 14px;
+                    color:blue;                    
+                }
+                .window ol li{text-align:justify}
+                .window ol li strong{display:inline-block}
+                .marB5{margin-bottom:5px;}
+                
+                h3.newTitle{margin:0;padding:0;}
+				.leaflet-container .leaflet-control-zoom{overflow:hidden;}
+				.leaflet-control-zoom a, .leaflet-control-layers-toggle{border-bottom:1px solid #E6E6E6;background-color:#F5F5F5}
+                </style>
+                <script src="../../js/jquery.min.js"></script>
+                <script src="../../js/jquery.autocomplete.js"></script>
+                <script type="text/javascript">
+                    var base = "../../index.html";
+                    var year = "2009";
+                    var type = "pc";
+                    var subtype = "turnout";
+                    var delimitation = "2009";
+                    var qry_layer;
+                    var layers = new Array();
+
+                    if (type == 'ac') {
+                        var func = "get_ac_name";
+                        var state = "";
+                        var arg = state;
+                    } else {
+                        var func = "get_pc_name";
+                        var arg = year;
+                    }
+
+                    /*
+                     //QUAMMAS IN INTERNATIONAL FORMAT 
+                     function addCommas(nStr) {    
+                     nStr += '';
+                     var x = nStr.split('.');
+                     var x1 = x[0];
+                     var x2 = x.length > 1 ? '.' + x[1] : '';
+                     var rgx = /(\d+)(\d{3})/;
+                     while (rgx.test(x1)) {
+                     x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                     }
+                     return x1 + x2;
+                     }     
+                     */
+                    //QUAMMAS IN INDIAN FORMAT 
+                    function addCommas(nStr)
+                    {
+                        nStr += '';
+                        x = nStr.split('.');
+                        x1 = x[0];
+                        x2 = x.length > 1 ? '.' + x[1] : '';
+                        var rgx = /(\d+)(\d{3})/;
+                        var z = 0;
+                        var len = String(x1).length;
+                        var num = parseInt((len / 2) - 1);
+
+                        while (rgx.test(x1))
+                        {
+                            if (z > 0)
+                            {
+                                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                            }
+                            else
+                            {
+                                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                                rgx = /(\d+)(\d{2})/;
+                            }
+                            z++;
+                            num--;
+                            if (num == 0)
+                            {
+                                break;
+                            }
+                        }
+                        return x1 + x2;
+                    }
+
+                    function setCookie(c_name, value, exdays)
+                    {
+                        var exdate = new Date();
+                        exdate.setDate(exdate.getDate() + exdays);
+                        var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+                        document.cookie = c_name + "=" + c_value;
+                    }
+                    function getCookie(c_name)
+                    {
+                        var c_value = document.cookie;
+                        var c_start = c_value.indexOf(" " + c_name + "=");
+                        if (c_start == -1)
+                        {
+                            c_start = c_value.indexOf(c_name + "=");
+                        }
+                        if (c_start == -1)
+                        {
+                            c_value = null;
+                        }
+                        else
+                        {
+                            c_start = c_value.indexOf("=", c_start) + 1;
+                            var c_end = c_value.indexOf(";", c_start);
+                            if (c_end == -1)
+                            {
+                                c_end = c_value.length;
+                            }
+                            c_value = unescape(c_value.substring(c_start, c_end));
+                        }
+                        return c_value;
+                    }
+
+                    function openWindow(url)
+                    {
+                        window.open(url, '_blank');
+                        window.focus();
+                    }
+
+                    $(document).ready(function() {
+                        $('#notification').hide();
+                        $('#map_loader').hide();
+                        $('#map_loader1').hide();
+                        $('#map_loader2').hide();
+                        $(".slidingDiv").hide();
+                        $(".show_legend").show();
+
+                        $("#qry_div").hide();
+                        $("#qry_div_close_contest").hide();
+                        var visible = true;
+                        $('.show_legend').click(function() {
+                            $(".slidingDiv").slideToggle(function() {
+                                visible = !visible;
+                                if (visible)
+                                {
+                                    $("#pc_legend").removeClass("show_legend_hide").addClass("show_legend");
+                                }
+                                else
+                                {
+                                    $("#pc_legend").removeClass("show_legend").addClass("show_legend_hide");
+                                }
+                            });
+
+                        });
+                        
+                        $("#compare").click(function(){
+                            var state_name = $("select[name='pcac_all_state'] option:selected").text();
+                            state_name = state_name.replace(/ /ig, "-");
+                            state_name = state_name.replace(/\[|\]|Select-State/ig, "");
+                            
+                           var comp_year1 = $("#year_pc_all").val();
+                           var comp_year2 = $("#year_pc_all2").val();
+                           if(comp_year1 == comp_year2){
+                               alert('Please Enter Diffrent Election Years');
+                               return false;
+                           }
+                           var url = base + "maps/compare/"+comp_year1+"-"+comp_year2+'/'+state_name;
+                           window.location.href = url;
+                        });
+
+                        $("#search").autocomplete({
+                            serviceUrl: base + "maps/" + func + "/" + arg + "/" + year,
+                            minChars: 1,
+                            onSelect: function(value, data) {
+
+                                if (marker != '') {
+                                    map.removeLayer(marker);
+
+                                }
+                                arr = data.split(',');
+
+                                    var pcemid = "4";
+                                if (type == 'pc') {
+                                    var pcurl = base + type + "/detail/" + arr[3] + "/" + arr[2] + "/" + pcemid
+                                } else {
+                                    var pcurl = base + type + "/details/" + arr[2] + "/" + arr[3] + "/" + pcemid
+                                }
+                                marker = L.marker(new L.LatLng(arr[0], arr[1])).addTo(map);
+                                map.setView(new L.LatLng(arr[0], arr[1]), 10);
+                                //marker.bindPopup("<a href='"+pcurl+"'"+">Details </a>");
+                                marker.on('click', function() {
+                                    //openWindow(pcurl);
+                                });
+                                if (type == "ac") {
+                                    zoom = 8;
+                                } else {
+                                    zoom = 8;
+                                }
+                                //map.maxZoom(11);
+                                map.setView(new L.LatLng(arr[0], arr[1]), zoom);
+
+
+                            }}
+
+                        );
+                            $("#partyacauto").autocomplete({
+                                serviceUrl: base + "maps/get_ac_party/4/",
+                                minChars: 1,
+                                onSelect: function(value, data) {
+
+                                    $('#party_id').attr('value', data);
+
+
+                                }}
+
+                            );
+                            $("#partyacauto_cc").autocomplete({
+                                serviceUrl: base + "maps/get_ac_party/4/",
+                                minChars: 1,
+                                onSelect: function(value, data) {
+//console.log(data);
+                                    $('#party_id_cc').val(data);
+
+
+                                }}
+
+                            );
+                            
+                            $("#pc_party_cc").autocomplete({
+                                serviceUrl: base + "maps/get_pc_party/4/",
+                                minChars: 1,
+                                onSelect: function(value, data) {
+//console.log(data);
+                                    $('#pc_party_id_cc').val(data);
+
+
+                                }}
+
+                            );
+                            
+                            
+
+                            $("#pc_party").autocomplete({
+                                serviceUrl: base + "maps/get_pc_party/4/",
+                                minChars: 1,
+                                onSelect: function(value, data) {
+
+                                    $('#pc_party_id').attr('value', data);
+
+
+                                }}
+
+                            );
+                        $('#type').change(function() {
+                            var val = $(this).val();
+                            if (val == "pc") {
+
+                                if (type == 'ac' || subtype == 'compare') {
+                                    var url = base + "maps/pc/2009";
+                                    window.location.href = url;
+                                }
+                                $('#year_pc').show();
+                                $('#state_ac').hide();
+                                $('#state_ac_year').hide();
+
+                                $('#state_ac').hide();
+                                $('#state_ac_year').hide();
+                                if (type == "pc") {
+                                    $("#year_pc_all option[text=" + year + "]").attr("selected", "selected");
+                                } else {
+                                    $.ajax({
+                                        url: base + "maps/getpcyear/",
+                                    }).done(function(data) {
+                                        //alert(data);
+                                        //                    var obj = jQuery.parseJSON(data);
+                                        //                    var select = "<select id='year_pc_all'>";
+                                        //                    for (i = 0; i <= obj.length; i++) {
+                                        //                       var year_json=obj[i].pc_election_year;
+                                        //                       
+                                        //                        select += "<option value='" + year_json + "'>" + year_json + "</option>";
+                                        //                    }
+                                        //                    select += "</select>";
+                                        $('#year_pc').html(data);
+                                        $('#year_pc_all').change(function() {
+                                            var url = base + "maps/pc/" + $(this).val();
+                                            window.location.href = url;
+                                        });
+                                    });
+                                }
+                            } else if(val == "ac") {
+
+                                if (type == 'pc') {
+                                    var url = base + "maps/ac/";
+                                    window.location.href = url;
+                                }
+                                $('#year_pc').hide();
+                                $('#state_ac').show();
+                                $('#state_ac_year').show();
+                                $.ajax({
+                                    url: base + "maps/getacstate/",
+                                }).done(function(data) {
+                                    //alert(data);
+                                    //                    var obj = jQuery.parseJSON(data);
+                                    //                    var select = "<select id='year_pc_all'>";
+                                    //                    for (i = 0; i <= obj.length; i++) {
+                                    //                       var year_json=obj[i].pc_election_year;
+                                    //                       
+                                    //                        select += "<option value='" + year_json + "'>" + year_json + "</option>";
+                                    //                    }
+                                    //                    select += "</select>";
+                                    $('#state_ac').html(data);
+                                    $('#ac_all_state').change(function() {
+                                        if ($(this).val() == 'select') {
+                                            alert('Please select a valid state')
+                                        } else {
+                                            $.ajax({
+                                                url: base + "maps/getacstateyear/" + $(this).val(),
+                                            }).done(function(data) {
+                                                $('#state_ac_year').html(data);
+                                                $('#ac_all_state_year').change(function() {
+                                                    if ($(this).val() == 'select') {
+                                                        alert('Please select a valid state')
+                                                    } else {
+                                                        var url = base + "maps/ac/" + $("select[name='ac_all_state'] option:selected").text() + "/" + $('#ac_all_state_year').val();
+                                                        window.location.href = url;
+                                                    }
+                                                });
+                                            });
+                                        }
+                                    });
+                                });
+                            }
+							else{
+								//if pcac selected
+								if (type == 'pc') {
+                                    var url = base + "maps/compare/";
+                                    window.location.href = url;
+                                }
+							}
+
+
+                        });
+
+
+
+                        if ($('#year_pc_all').length) {
+                            $('#year_pc_all').change(function() {
+                                if ($(this).val() == 'select') {
+                                    alert('Please select a valid state')
+                                } else {
+                                    var prevzoom = map.getZoom();
+                                    var prevcenter = map.getCenter();
+                                    //alert(JSON.stringify(prevcenter));
+                                    //setCookie("zoom",prevzoom,1);
+                                    setCookie("zoom", prevzoom, 1);
+                                    setCookie("center", JSON.stringify(prevcenter), 1);
+
+                                    var url = base + "maps/pc/" + $(this).val();
+                                    window.location.href = url;
+                                }
+
+                            });
+                        }
+                        if ('#ac_all_state') {
+                            $('#ac_all_state').change(function() {
+                                if ($(this).val() == 'select') {
+                                    alert('Please select a valid state')
+                                } else {
+                                    $.ajax({
+                                        url: base + "maps/getacstateyear/" + $(this).val(),
+                                        async:false,
+                                    }).done(function(data) {
+                                        $('#state_ac_year').html(data);
+                                        $('#ac_all_state_year').change(function() {
+                                            if ($(this).val() == 'select') {
+                                                alert('Please select a valid state')
+                                            } else {
+                                                //var prevzoom = map.getZoom();
+                                                //var prevcenter = map.getCenter();
+                                                //setCookie("zoom", prevzoom, 1);
+                                                //setCookie("center", JSON.stringify(prevcenter), 1);
+                                                var state_name = $("select[name='ac_all_state'] option:selected").text();
+
+                                                state_name = state_name.replace(/ /ig, "-");
+                                                state_name = state_name.replace(/\[|\]/ig, "");
+                                                var url = base + "maps/ac/" + state_name + "/" + $('#ac_all_state_year').val();
+                                                window.location.href = url;
+                                            }
+                                        });
+                                    });
+                                }
+                            });
+                        }
+                        if ($('#ac_all_state_year').length) {
+                            $('#ac_all_state_year').change(function() {
+                                if ($(this).val() == 'select') {
+                                    alert('Please select a valid state')
+                                } else {
+                                    //var prevzoom = map.getZoom();
+                                    //var prevcenter = map.getCenter();
+                                    //setCookie("zoom", prevzoom, 1);
+                                    //setCookie("center", JSON.stringify(prevcenter), 1);
+
+                                    var state_name = $("select[name='ac_all_state'] option:selected").text();
+                                    state_name = state_name.replace(/ /g, "-");
+                                    state_name = state_name.replace(/\[|\]/g, "");
+
+                                    var url = base + "maps/ac/" + state_name + "/" + $('#ac_all_state_year').val();
+                                    window.location.href = url;
+                                }
+                            });
+                        }
+                        $('#search').focus(function() {
+                            $(this).val('')
+                            $(this).removeClass('defaultClass')
+                        });
+                        $('#search').blur(function() {
+
+                            $(this).val('PC Name')
+                            $(this).addClass('defaultClass')
+                        });
+                        $('.partyclass').focus(function() {
+                            if($(this).val() == 'Party Name')
+                            $(this).val('');
+                            
+
+                        });
+                        $('.partyclass').blur(function() {
+                            if ($(this).val().length == 0)
+                                $(this).val('Party Name')
+
+                        });
+
+                        $('.marginclass').focus(function() {
+                            if($(this).val() == 'Enter margin in number of votes')
+                            $(this).val('')
+
+                        });
+                        $('.marginclass').blur(function() {
+                            if ($(this).val().length == 0)
+                                $(this).val('Enter margin in number of votes')
+
+                        });
+
+
+
+                        //on click button query  
+
+                        $("#btn_query").click(function() {
+                            //alert('clicked');
+                            $('#warning').css('color', '#ff0000');
+                            $("#warning").html('');
+                            //var larrays = map.getLayers();
+                            //alert('435 = '+larrays);
+                            
+                            var party = $('#pc_party').val();
+                            var acmargin = $('#txt_qryval').val();
+                            
+                            var pattern = new RegExp(/\s*[a-z]+\s*\(\s*[a-z]+\s*\)/ig);
+                            if(!pattern.test(party)){
+                                $("#warning").html('Please Select correct party');
+                                return false;
+                            }
+                            
+                            var number_pattern = new RegExp(/\d+/);
+                            if(!number_pattern.test(acmargin)){
+                                $("#warning").html('Please enter margin');
+                                return false;
+                            }
+                            
+                             var rep_option = parseInt($("#sel_report").val());
+                              $("#report_option").val(rep_option);
+                             
+                            var url = base + "/maps/process_query"
+                             
+                            if (qry_layer) {
+                                map.removeLayer(qry_layer);
+                            }
+                            if (layers.length > 0) {
+                                //map.removeLayer(qry_layer);
+                            }
+                            //var url = base + "/maps/process_query"
+                            //var  datastr = [{"name":"sEcho","value":1},{"name":"iColumns","value":9},{"name":"sColumns","value":""},{"name":"iDisplayStart","value":0}];
+                            var datastr = $("#frm_query").serialize();
+                            $.ajax({url: url,
+                                type: 'post',
+                                dataType: "json",
+                                data: datastr,
+                                success: function(result) {
+                                    //var points =result.split("~");
+                                    //create_layer(points);
+                                    //create_layer2(result);
+                                   if (result != 0) {
+                                        $.each(result, function() { 
+                                        total_records = this.length;
+                                        });
+                                        
+                                        
+                                        $('#warning').css('color', 'green');
+                                        $('#warning').html(total_records + ' Records Found');
+                                        add_layer_ac(result);
+                                        
+                                    } else {
+                                        $('#warning').css('color', '#ff0000');
+                                        $('#warning').html('No Records Found');
+                                    }
+
+                                },
+                                beforeSend: function() {
+                                    $('#map_loader').show();
+                                },
+                                complete: function() {
+                                    $('#map_loader').hide();
+                                },
+                                error:function( jqXHR,textStatus, errorThrown ){alert ('error'+ errorThrown);}
+                                
+                            });
+                        });
+
+                        $("#btn_query_ac").click(function() {
+                            $("#warning").html('');
+                            
+                            var party = $('#partyacauto').val();
+                            var acmargin = $('#acmargin').val();
+                            
+                            var pattern = new RegExp(/\s*[a-z]+\s*\(\s*[a-z]+\s*\)/ig);
+                            if(!pattern.test(party)){
+                                $("#warning").html('Please Select correct party');
+                                return false;
+                            }
+                            
+                            var number_pattern = new RegExp(/\d+/);
+                            if(!number_pattern.test(acmargin)){
+                                $("#warning").html('Please enter margin');
+                                return false;
+                            }
+                            
+                            var rep_option = parseInt($("#sel_report").val());
+                            $("#report_option").val(rep_option);
+                             
+                            if (qry_layer) {
+                                map.removeLayer(qry_layer);
+                            }
+                            if (layers.length > 0) {
+                                //map.removeLayer(qry_layer);
+                            }
+                            
+
+                            
+                            //var  datastr = [{"name":"sEcho","value":1},{"name":"iColumns","value":9},{"name":"sColumns","value":""},{"name":"iDisplayStart","value":0}];
+                            var datastr = $("#frm_query_ac").serialize();
+                            var url = base + "maps/process_query_ac";
+                            var total_records = 0;
+                            $.ajax({url: url,
+                                type: 'post',
+                                dataType: "json",
+                                data: datastr,
+                                success: function(result) {
+                                    if (result != 0) {
+                                        
+                                        $.each(result, function() { 
+                                        total_records = this.length;
+                                        });
+                                        
+                                        $('#warning').css('color', 'green');
+                                        $('#warning').html(total_records + ' Records Found');
+                                        add_layer_ac(result);
+                                        
+                                    } else {
+                                        $('#warning').css('color', '#ff0000');
+                                        $('#warning').html('No Records Found');
+                                    }
+
+                                },
+                                beforeSend: function() {
+                                    $('#map_loader').show();
+                                },
+                                complete: function() {
+                                    $('#map_loader').hide();
+                                }
+                            });
+                        });
+                        
+                        
+                        
+                         $("#btn_cc").click(function() {
+
+                            $("#warning1").html('');
+                            
+                            var rep_option = parseInt($("#sel_report").val());
+                            $("#report_option").val(rep_option);
+                            
+                            var party = $('#partyacauto_cc').val();
+                            var pattern = new RegExp(/\s*[a-z]+\s*\(\s*[a-z]+\s*\)/ig);
+                            if(party != 'Party Name' && party == 'No Records Available' && !pattern.test(party)){
+                                $("#warning1").html('Please Select correct party');
+                                return false;
+                            }
+                             
+                            //var larrays = map.getLayers();
+                           // alert('651 = '+rep_option);
+                            if (qry_layer) {
+                                map.removeLayer(qry_layer);
+                            }
+
+                            
+                            var datastr = $("#frm_close_contest").serialize();
+                            //alert(datastr);
+                            
+                            var url = base + "/maps/process_close_contest_ac";
+                           
+                            $.ajax({url: url,
+                                type: 'post',
+                                dataType: "json",
+                                data: datastr,
+                                success: function(result) {
+                                    if (result != 0) {
+                                        $.each(result, function() { 
+                                        total_records = this.length;
+                                        });
+                                        
+                                        $('#warning1').css('color', 'green');
+                                        $('#warning1').html(total_records + ' Records Found');
+                                        add_layer_cc(result);
+                                        
+                                    } else {
+                                        $('#warning1').css('color', '#ff0000');
+                                        $('#warning1').html('No Records Found');
+                                    }
+
+                                },
+                                beforeSend: function() {
+                                    $('#map_loader1').show();
+                                },
+                                complete: function() {
+                                    $('#map_loader1').hide();
+                                    //$('#party_id_cc').val('');
+                                }
+                            });
+                        });
+                        
+                        
+                            //for pc
+                            $("#btn_query_cc").click(function() {
+
+                            $("#warning2").html('');
+                            
+                            var rep_option = parseInt($("#sel_report").val());
+                            $("#report_option").val(rep_option);
+                            
+                            var party = $('#pc_party_cc').val();
+                            //alert(party);
+                            var pattern = new RegExp(/\s*[a-z]+\s*\(\s*[a-z]+\s*\)/ig);
+                            
+                            //alert(pattern.test(party));
+                            
+                            if(party != 'Party Name' && !pattern.test(party)){
+                                //alert('HI');
+                                $('#warning2').css('color', '#ff0000');
+                                $("#warning2").html('Please Select correct party');
+                                return false;
+                            }
+                             
+                            //var larrays = map.getLayers();
+                           // alert('651 = '+rep_option);
+                            if (qry_layer) {
+                                map.removeLayer(qry_layer);
+                            }
+
+                            
+                            var datastr = $("#frm_query_cc").serialize();
+                           // alert(datastr);
+                            
+                            var url = base + "/maps/process_close_contest_pc"
+                           
+                            $.ajax({url: url,
+                                type: 'post',
+                                dataType: "json",
+                                data: datastr,
+                                success: function(result) {
+                                    if (result != 0) {
+                                        $.each(result, function() { 
+                                        total_records = this.length;
+                                        });
+                                        
+                                        $('#warning2').css('color', 'green');
+                                        $('#warning2').html(total_records + ' Records Found');
+                                        add_layer_cc(result);
+                                        
+                                    } else {
+                                        $('#warning2').css('color', '#ff0000');
+                                        $('#warning2').html('No Records Found');
+                                    }
+
+                                },
+                                beforeSend: function() {
+                                    $('#map_loader2').show();
+                                },
+                                complete: function() {
+                                    $('#map_loader2').hide();
+                                    //$('#pc_party_id_cc').val('');
+                                }
+                            });
+                        });
+
+                        $("#sel_report").change(function() {
+                            //alert('changed' + $(this).val());
+                            var optval = parseInt($(this).val());
+                            switch (optval)
+                            {
+                                case -1:
+                                    $("#qry_div_close_contest").hide(500);
+                                    $("#qry_div").hide(500);
+                                    break;
+                                case 1:
+                                case 2:
+                                    $("#qry_div_close_contest").hide(500);
+                                    $("#qry_div").show(500);
+                                    break;
+                                case 3:
+                                    $("#qry_div").hide(500);
+                                    $("#qry_div_close_contest").show(500);
+                                    break;
+                                case 4:
+                                       window.location.href = "index.html";
+                                    break;                                    
+                                    
+                                default:qry_div
+                                    //
+                            }
+                        });
+
+
+//check this code after
+                        /*
+                        map.on('zoomend', function() {
+                            //alert(map.getZoom());
+                            var currentZoom = map.getZoom();
+                            if (currentZoom > 7) {
+                                //alert(currentZoom);
+
+                            }
+                        });
+ */
+                    });
+
+
+                    function create_layer(points) {
+
+                        // alert(points);
+                        //console.log(result);     
+                        //[26.57385528330269,91.93250738686022, "Mangaldoi","55849"]
+                        var len = points.length;
+                        for (var i = 0; i < len; i++)
+                        {
+                            //console.log(result[i]);
+                            var points1 = points[i].split(",");
+                            console.log(points1[0].substring(1) + "==>>" + points1[1] + "==>>" + points1[2]);
+                        }
+
+
+
+                        var nagpur = L.marker([21.1458, 79.088155]).bindPopup('This is Littleton, CO.'), //nagpur
+                                pune = L.marker([18.52043, 73.856744]).bindPopup('This is Denver, CO.');   //pune
+                        var cities = L.layerGroup([nagpur, pune]);
+                        map.addLayer(cities);
+
+                    }
+
+                   function getcolor(feature){
+                       if(feature.id >= 0 && feature.id <20000)
+                            return "yellow";
+                       else if(feature.id >= 20000 && feature.id <30000 )
+                            return "red";
+                       else if(feature.id >= 30000 && feature.id <40000)
+                            return "blue";
+                       else 
+                            return "green";
+                   }
+                   
+                   function get_radius(feature){
+                       if(feature.id >= 0 && feature.id <20000)
+                            return 5;
+                       else if(feature.id >= 20000 && feature.id <30000 )
+                            return 6;
+                       else if(feature.id >= 30000 && feature.id <40000)
+                            return 7;
+                       else 
+                            return 8;
+                   }
+                   
+                    function add_layer_ac(result) {
+                        var bicycleRental = result;
+                        qry_layer = L.geoJson([bicycleRental], {
+                            style: function(feature) {
+                                return feature.properties && feature.properties.style;
+                            },
+                            onEachFeature: onEachFeature,
+                            pointToLayer: function(feature, latlng) {
+                                return L.circleMarker(latlng, {
+                                    radius: get_radius(feature),
+                                    fillColor: getcolor(feature),
+                                    color: "#000",
+                                    weight: 1,
+                                    opacity: 1,
+                                    fillOpacity: 0.8
+                                });
+                            }
+                        });
+                        map.addLayer(qry_layer);
+                        layers.push(qry_layer);
+                        // }
+                    }
+
+
+                    function add_layer_cc(result) {
+                        var bicycleRental = result;
+                        qry_layer = L.geoJson([bicycleRental], {
+                            style: function(feature) {
+                                return feature.properties && feature.properties.style;
+                            },
+                            onEachFeature: onEachFeature_cc,
+                            pointToLayer: function(feature, latlng) {
+                                return L.circleMarker(latlng, {
+                                    radius: 6,
+                                    fillColor: "red",
+                                    color: "#000",
+                                    weight: 1,
+                                    opacity: 1,
+                                    fillOpacity: 0.8
+                                });
+                            }
+                        });
+                        map.addLayer(qry_layer);
+                        layers.push(qry_layer);
+                        // }
+                    }
+
+                    function add_layer(result) {
+                        var bicycleRental = result;
+                        alert(1027);
+                        qry_layer = L.geoJson([bicycleRental], {
+                            style: function(feature) {
+                                return feature.properties && feature.properties.style;
+                            },
+                            onEachFeature: onEachFeature,
+                            pointToLayer: function(feature, latlng) {
+                                return L.circleMarker(latlng, {
+                                    radius: 8,
+                                    fillColor: "red",
+                                    color: "#000",
+                                    weight: 1,
+                                    opacity: 1,
+                                    fillOpacity: 0.8
+                                });
+                            }
+                        });
+                        map.addLayer(qry_layer);
+                        layers.push(qry_layer);
+
+                    }
+
+
+                    /*
+                     
+                     function add_layer(result) {
+                     
+                     var defaultIcon = L.icon({
+                     iconUrl: 'http://192.168.11.17/indiavotes/trunk/images/bjp.png',
+                     iconSize: [16, 16],
+                     iconAnchor: [8, 8],
+                     popupAnchor: [0, -8]
+                     });
+                     var bicycleRental = result;
+                     
+                     qry_layer = L.geoJson([bicycleRental], {
+                     style: function(feature) {
+                     return feature.properties && feature.properties.style;
+                     },
+                     onEachFeature: onEachFeature,
+                     pointToLayer: function(feature, latlng) {
+                     return L.marker(latlng, {icon: defaultIcon});
+                     }
+                     });
+                     map.addLayer(qry_layer);
+                     layers.push(qry_layer);
+                     
+                     }
+                     */
+
+                    function onEachFeature(feature, layer) {
+                        var popupContent = "";
+                        if (feature.properties && feature.properties.popupContent) {
+                            popupContent += feature.properties.popupContent + "  <strong>Margin:</strong> " + addCommas(feature.id);
+                        }
+                        layer.bindPopup(popupContent);
+                    }
+                    
+                    
+                       function onEachFeature_cc(feature, layer) {
+                        var popupContent = "<strong class='close_contest'>Third Position Candidate Impact</strong><hr />";
+                        if(type == 'pc'){
+                            if (feature.properties && feature.properties.popupContent) {
+                                popupContent += feature.properties.popupContent + "  <br /><strong>Candidate Name:</strong> " + toTitleCase(feature.cname)
+                                   + "<br /><strong>Party:</strong> " + feature.party_abbr
+                           + "  <br /><strong>Votes:</strong> " + addCommas(feature.ccvotes)+"<br />"+
+                            "<a target='_blank' href='"+base+"pc/closecontest/"+feature.eid+"/"+feature.state_id+"'>Detail</a>" ;
+
+                            }                            
+                        }else{
+                            if (feature.properties && feature.properties.popupContent) {
+                                popupContent += feature.properties.popupContent + "  <br /><strong>Candidate Name:</strong> " + toTitleCase(feature.cname)
+                                   + "<br /><strong>Party:</strong> " + feature.party_abbr
+                           + "  <br /><strong>Votes:</strong> " + addCommas(feature.ccvotes)+"<br />"+
+                            "<a target='_blank' href='"+base+"ac/closecontest?stateac="+feature.state_id+"&emid="+feature.eid+"'>Detail</a>" ;
+
+                            }
+                        }
+                        layer.bindPopup(popupContent);
+                    }
+                    
+
+                </script>
+                <script src="../../assets/leaflet/leaflet.html"></script>
+                <script type="text/javascript" src="../../assets/leaflet/L.Map.Sync.html"></script>
+                <!--<script type="text/javascript" src=""></script>-->
+
+                <script src="../../assets/leaflet/l.control.geosearch.html"></script>
+                <script src="../../assets/leaflet/l.geosearch.provider.google.html"></script>
+                <script src="../../assets/leaflet/wax.leaf.html"></script>
+
+                <script>
+                    var zoom, tmp_center, center;
+                    zoom = getCookie('zoom');
+                    tmp_center = getCookie('center');
+                    var center = jQuery.parseJSON(tmp_center);
+                    //alert(center.lat +'  '+center.lng);
+                    if (zoom == "" || zoom == 'null') {
+                        zoom = 6
+                    }
+
+                    if (center == "" || center == null) {
+                        //center = '17.55466, 74.696045';
+                        //center.lat = 17.55466;
+                        //center.lng = 74.696045;
+                    }
+                    $(document).ready(function() {
+
+                        $(".content").show(); //updated line, removing the #panel ID.
+                        $('#mapPanel').stop().animate({width: "310px", opacity: 1}, 200, function() {//sliding the #panel to 400px
+                            $('.content').fadeIn('fast'); //slides the content into view.
+                            $('#slideArrow').addClass('slideArrowHide');
+                            $('.leaflet-left').removeClass('leaflet-left').addClass('leaflet-left1');
+                        });
+                        $('#mapTab').toggle(function() { //when the #tab is next cliked
+                            $('.content').fadeOut('fast', function() { //fade out the content 
+                                $('#mapPanel').stop().animate({width: "0", opacity: 0.9}, 200); //slide the #panel back to a width of 0
+                                $('#slideArrow').removeClass('slideArrowHide').addClass('slideToggle');
+                                $('.leaflet-left1').removeClass('leaflet-left1').addClass('leaflet-left');
+                                $("#footerLink0").toggle();
+
+                            });
+            },
+                                function() { //adding a toggle function to the #tab
+                                    $('#mapPanel').stop().animate({width: "310px", opacity: 1}, 200, function() {//sliding the #panel to 400px
+                                        //console.log('HI');
+                                        $('.content').fadeIn('fast'); //slides the content into view.
+                                        $('#slideArrow').addClass('slideArrowHide');
+                                        $('.leaflet-left').removeClass('leaflet-left').addClass('leaflet-left1');
+                                        $("#footerLink0").toggle();
+                                    });
+
+                                });
+                    });
+                    
+                function toTitleCase(str)
+                {
+                    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+                }   
+        
+                </script>
+                <title>
+                                            IndiaVotes PC: Map of All States  2009                                        </title>
+        </head>
+        <body>
+            
+            <div id="footerLink0" class="mapGuide">
+                <!--<a href="home/contact_us" title="Contact Us" target="_blank">Contact Us</a> |-->
+                <!--<a href="#" title="Report Error" class="noneGuide">Report Error</a>-->
+                <a class="noneGuide" title="Report Errors" name="modal" href="#reportError">Report Errors</a> |
+                <a class="noneGuide" title="FAQ" name="modal" href="#faq">FAQ <img src="../../images/faqQuestion.png" alt="FAQ" /></a>
+                <br />
+                <span style="font-size:9px !important;color:#555;margin-top:11px;display:inline-block">Best viewed in Mozilla, IE 10+, Safari 5+, Chrome, Opera 12+</span>
+            </div>
+            
+            <div class="topPanel"> <a href="../../index.html"><img src="../../images/india-votes.png" /></a>
+                            <div class='legend-source' style="display:none">Source: <a href="../../index.html" target="_black">Indiavotes.com</a>
+                <h4>All India PC Map - </h4>
+            </div></div>
+<div id="notification" style="position:absolute;z-index:1005;font-size:12px;color:#000000;background-color:#FFE694;opacity:0.5;padding:4px 7px;border-radius:4px;bottom:10px;left:350px">AC segments data is now available.</div>  
+<div style="position:absolute;left:0;z-index:1001;top:0">
+    <div id="footerLink0" class="mapGuide">
+                <!--<a href="home/contact_us" title="Contact Us" target="_blank">Contact Us</a> |-->
+                <!--<a href="#" title="Report Error" class="noneGuide">Report Error</a>-->
+                <a class="noneGuide" title="Report Errors" name="modal" href="#reportError">Report Errors</a> |
+                <a class="noneGuide" title="FAQ" name="modal" href="#faq">FAQ <img src="../../images/faqQuestion.png" alt="FAQ" /></a>
+                <br />
+                <span style="font-size:9px !important;color:#555;margin-top:11px;display:inline-block">Best viewed in Mozilla, IE 10+, Safari 5+, Chrome, Opera 12+</span>
+            </div> 
+    <div style="width: 0px;" id="mapPanel"> 
+
+        <!--the hidden panel -->
+        <div style="display: none;" class="content">
+
+            <div style="position:absolute;top:0;left:0;display:block">
+              
+            </div>
+            <!--insert your content here -->
+            
+            
+            <div  class="searchFilter"> <strong>Select Election</strong>
+                <br />
+                <div style="float:left;margin:0 10px 8px 0;width:53px;">
+
+                    <select id="type">
+                                                    <option value="pc" SELECTED>PC</option>
+                                                                                                            <option value="ac">AC</option>
+                                                        }
+                                            </select>
+                </div>
+
+
+                          
+
+                                    <br class="clearBoth"/>
+                    <div style="width:135px;margin:0 10px 8px 0;" id="year_pc">
+                        Select Year:<select name="year_pc_all" name='year_pc_all' id='year_pc_all'>
+<option value="select">Select Year</option>
+<option value="2024">2024</option>
+<option value="2019">2019</option>
+<option value="2014">2014</option>
+<option value="2009" selected="selected">2009</option>
+<option value="2004">2004</option>
+<option value="1999">1999</option>
+<option value="1998">1998</option>
+<option value="1996">1996</option>
+</select>                    </div>
+                    
+                                    <div style="width:135px;margin:0 10px 8px 0;" id="year_pc2">
+                                    </div>
+                   
+                                        
+                    
+                
+                                   
+                    
+                                <br class="clearBoth" /><br />
+                <strong>Search Constituency</strong>
+                <input class="defaultClass" type="text" id="search" name="search" value="PC Name"  />
+                <br class="clearBoth" /><br />
+                <!--<input type="button" name="center" value ="Center" onclick="alert(map.getCenter())" />-->
+                <strong> Reports</strong><br class="clearBoth" />
+                <select name="sel_report" id="sel_report">
+                                                             <option value="4" selected>Turnout</option>
+                                       
+                </select>
+                <br class="clearBoth" /><br />
+
+                <div id="qry_div">
+                                            <form name="frm_query" id="frm_query">
+                            <input type="hidden" id="report_option" name="report_option" value="" />
+                            <strong>Party Performance</strong><br />
+                            <div style="margin:0 0 8px 0">
+                                <input class="defaultClass partyclass" type="text" id="pc_party" name="txt_party" value="Party Name">
+                                <input type='hidden' id='pc_party_id' name='pc_party_id' value=''>
+                                <input type='hidden' id='pcemid' name='pcemid' value='4'>
+                            </div>
+
+                            <div style="margin:0 0 8px 0;width:100%">
+                                <input class="defaultClass marginclass" type="text" id="txt_qryval" name="txt_qryval" value="Enter margin in number of votes">
+                            </div>
+                            <div style="margin:0 0 8px 0;">
+                                <Input type="button" id="btn_query" name="btn_query"  value="Go" class="btnInput" /> <img src="../../images/loading3.gif" id="map_loader" class="fl" style="vertical-align:middle" />
+                                <span id="warning" style="font-size:12px;color:#ff0000;text-transform: capitalize"></span>
+                            </div>
+                            <br />
+                        </form>
+                                    </div>  <!--end qry_div-->
+
+                <div id="qry_div_close_contest">
+                                            <form name="frm_query_cc" id="frm_query_cc">
+                            <input type="hidden" id="report_option" name="report_option" value="" />
+                            <strong>Close Contest</strong><br />
+                            <div style="margin:0 0 8px 0">
+                                <input class="defaultClass partyclass" type="text" id="pc_party_cc" name="pc_party_cc" value="Party Name">
+                                <input type='hidden' id='pc_party_id_cc' name='pc_party_id_cc' value=''>
+                                <input type='hidden' id='pcemid_cc' name='pcemid_cc' value='4'>
+                                <!--<input type='hidden' id='stateid_cc' name='stateid_cc' value=''>-->
+
+                            </div>
+
+
+                            <div style="margin:0 0 8px 0;">
+                                <Input type="button" id="btn_query_cc" name="btn_query_cc"  value="Go" class="btnInput" /> <img src="../../images/loading3.gif" id="map_loader2" class="fl" style="vertical-align:middle" />
+                                <span id="warning2" style="font-size:12px;color:#ff0000;text-transform: capitalize"></span>
+                            </div>
+                            <br />
+                        </form>
+                                    </div>
+
+                           
+
+            </div>
+        </div>
+        <!--if javascript is disabled use this link--> 
+
+
+
+    </div>
+    <a id="slideArrow" class="slideToggle">
+        <div id="mapTab"><!-- this will activate your panel. --> 
+        </div>
+    </a> </div>
+    
+        <div class="slidingDiv">
+            <div class='my-legend' style='height:200px;overflow-y:auto;width:100px;background:#ffffff!important;'>
+
+                <div class='legend-title'>PARTIES</div>
+                <div class='legend-scale'>
+                    <ul class='legend-labels'>
+                        
+            
+
+                        
+                        <li><span style='background:#FFEDA0;'></span>0-5</li>
+                        <li><span style='background:#FED976;'></span>5-20</li>
+                        <li><span style='background:#FEB24C;'></span>20-40</li>
+                        <li><span style='background:#FD8D3C;'></span>40-50</li>
+                        <li><span style='background:#FC4E2A;'></span>50-60</li>
+                        <li><span style='background:#E31A1C;'></span>60-70</li>
+                        <li><span style='background:#BD0026;'></span>70-80</li>
+                        <li><span style='background:#800026;'></span>80+</li>
+
+        <!--                        <li><span style='background:#d1e689;'></span>INC</li>
+                        <li><span style='background:#ffe694;'></span>BJP</li>
+                        <li><span style='background:#dcd9ee;'></span>IND</li>
+                        <li><span style='background:#41ff00;'></span>JKPDP</li>
+                        <li><span style='background:#ffcc66;'></span>SAD</li>
+                        <li><span style='background:#996600;'></span>SP</li>
+                        <li><span style='background:#ccff99;'></span>INLD</li>
+                        <li><span style='background:#999933;'></span>BSP</li>
+                        <li><span style='background:#ffa7a7;'></span>RLD</li>
+                        <li><span style='background:#e3ff74;'></span>AGP</li>
+                        <li><span style='background:#33FF99;'></span>JKN</li>
+                        <li><span style='background:#0099CC;'></span>HJCBL</li>
+                        <li><span style='background:#a5a5a5;'></span>JD(U)</li>
+                        <li><span style='background:#e6c0cd;'></span>BJD</li>
+                        <li><span style='background:#c8fa00;'></span>NCP</li>
+                        <li><span style='background:#a7c986;'></span>SHS</li>
+                        <li><span style='background:#663ecc;'></span>SWP</li>
+                        <li><span style='background:#a5ffe1;'></span>TDP</li>
+                        <li><span style='background:#a182ff;'></span>BVA</li>
+                        <li><span style='background:#00FF66;'></span>CPM</li>
+                        <li><span style='background:#99CCFF;'></span>TRS</li>
+                        <li><span style='background:#8d6c4f;'></span>JD(S)</li>
+                        <li><span style='background:#3d6286;'></span>ADMK</li>
+                        <li><span style='background:#547290;'></span>MDMK</li>
+                        <li><span style='background:#234562;'></span>KEC(M)</li>
+                        <li><span style='background:#aecdef;'></span>VCK</li>
+                        <li><span style='background:#ddccaa;'></span>MUL</li>
+                        <li><span style='background:#ae3421;'></span>CPI</li>
+                        <li><span style='background:#e5ecff;'></span>AIMIM</li>
+                        <li><span style='background:#65ace3;'></span>JMM</li>
+                        <li><span style='background:#657ace;'></span>RJD</li>
+                        <li><span style='background:#eac543;'></span>AIFB</li>
+                        <li><span style='background:#2134af;'></span>JVM</li>
+                        <li><span style='background:#ece560;'></span>AITC</li>
+                        <li><span style='background:#1467d3;'></span>RSP</li>
+                        <li><span style='background:#fa6c27;'></span>SDF</li>
+                        <li><span style='background:#eb5423;'></span>BOPF</li>
+                        <li><span style='background:#657826;'></span>AUDF</li>
+                        <li><span style='background:#908799;'></span>DMK</li>
+                        <li><span style='background:#ececec;'></span>NPF</li>
+                        <li><span style='background:#CC6633;'></span>JD</li>
+                        <li><span style='background:#ececec;'></span>HLD(R) </li>
+                        <li><span style='background:#C89810;'></span>AIIC(S)</li>
+                        <li><span style='background:#4095EF;'></span>HVP</li>
+                        <li><span style='background:#6CBA6F;'></span> RPI</li>
+                        <li><span style='background:#64A0B3;'></span>SAP</li>
+                        <li><span style='background:#FFA00F;'></span>FBL</li>
+                        <li><span style='background:#C44D58;'></span> WBTC</li>
+                        <li><span style='background:#FFCC66;'></span> LS</li>
+                        <li><span style='background:#FFBB66;'></span>PWPI</li>
+                        <li><span style='background:#FF6666;'></span>  BSP</li>
+                        <li><span style='background:#FF7300;'></span>TMC(M)</li>
+                        <li><span style='background:#66ffbb;'></span> PMK</li>
+                        <li><span style='background:#9D3650;'></span>JP</li>
+                        <li><span style='background:#FFFF42;'></span> MSCP</li>
+                        <li><span style='background:#5EB0BE;'></span>AC</li>
+                        <li><span style='background:#996699;'></span> ASDC</li>
+                        <li><span style='background:#006633;'></span>UMFA</li>
+                        <li><span style='background:#CC99CC;'></span>AIRJP</li>
+                        <li><span style='background:#CCCC99;'></span>SJP(R)</li>
+                        <li><span style='background:#008C00;'></span>AIIC(T)</li>
+                        <li><span style='background:#6D643C;'></span>KCP</li>
+                        <li><span style='background:#3E798C;'></span> UGDP</li>
+                        <li><span style='background:#9E2BF2;'></span>MAG</li>
+                        <li><span style='background:#FF9100;'></span>MPVC</li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <a id="pc_legend" href="#" class="show_legend">Legend</a>
+    </div>
+
+
+<div id="reportError" class="window" style="display:none">
+    <a href="#" class="close1">Close</a><br class="clearBoth" />
+    <form action="https://www.indiavotes.com/home/reportError" method="post" class="ajaxFormSubmit" id="giveFeedbackForm">
+        <div class="errorLightbox"></div>
+        <input type="text" style="width:226px;margin-right:15px;" placeholder="Name" id="name" name="name">
+        <input type="text" id="email" style="width:226px;" name="email" placeholder="Email"><br /><br />
+        <label class="fl"><b>Page Url:</b></label>
+        <input type="text" class="errorLink" disabled style="width:401px;">
+        <input type="hidden"  name="errorPage" class="errorLink">
+        <input type="hidden"  name="user_agent" class="user_agent"><br /><br />
+        <textarea name="description" placeholder="Describe error" id="description" class="inputForm" rows="7" style="width:480px;"></textarea>
+        <div id="error_captcha"></div>
+        <input type="submit" value="Submit" class="btn" style="vertical-align:top">
+    </form>
+</div>
+
+<div id="faq" class="window" style="display:none">
+    <a href="#" class="close1">Close</a>
+    <div class="errorLightbox"></div>
+    <h2 class="popupHeadTitle">FAQ</h2><hr />
+    <div style="overflow-y: scroll;height:410px;padding:0 15px 0 15px;">
+
+        <ol>
+            <li><strong class="marB5">How many Election Results can be visualized on maps?</strong><br /><strong>Ans</strong>: All parliamentary elections since 1996 and last two assembly elections for all states.</li>
+            <li><strong class="marB5">How do we navigate Maps?</strong><br /><strong>Ans</strong>: For Parliamentary Election Maps, Select PC in the top dropdown box and then select Year in the box below. This will show the parliamentary election result for that year. Use the Mouse scroll to Zoom In and Zoom Out of map. There are two buttons in the Map i.e + & - which too can be used to for Zooming in and out. For Assembly Election, Select AC in the top dropdown box and then select State in the adjacent box. If you want to locate any particular constituency in the map, type the name of that constituency in the box Search Constituency.</li>
+		    <li><strong class="marB5">Can we result for Assembly segments of Parliamentary constituencies?</strong><br /><strong>Ans</strong>: Yes, For 2009 Lok Sabha elections, we can see results at assembly segment level. We will update assembly segment results for 2004 and 1999 Lok Sabha elections very soon. This will be useful to compare assembly segment result with overall parliamentary constituency result.</li>
+			<li><strong class="marB5">How do we search for result of a particular constituency?</strong><br /><strong>Ans</strong>: Select Election Type as in Step 2 above. Select state for assembly election results. Type the name of that constituency in the box Search Constituency.</li>
+            <li><strong class="marB5">Is any other analytical election data available apart from actual election results?</strong>
+            <br /><strong>Ans</strong>: Yes. Three specific reports are available on maps i.e. <strong>Party Win Margin, Party Loss Margin </strong>and <strong>Close Contest</strong>. You can choose the report from the drop down box titled Reports. For Win and Lose Margin report, margin in number of votes would have to be entered along with the party name. This will show all election results on the map for that party won/loss by margin greater than the number entered. Margin Loss report would only consider seats where the party is a runner up i.e. at second position.
+            <br /><br />For Example, if you choose <strong>Party Loss Margin</strong> report for Congress and type 25000, it will show seats where Congress was runner up and loss margin was greater than 25000.<br /><br />For <strong>Close Contest</strong> report, only party name would have to be entered. This report would show contests where the candidate at third position got more votes than the winning margin of the election.</li>
+            <li><strong class="marB5">How can we reach you to give any feedback/suggestion or report an error?</strong><br /><strong>Ans</strong>: Please use <strong>Report Errors</strong> button at the bottom of the page to reach us.</li>
+
+        </ol> </div>
+</div>
+
+<div id="mask"></div>
+
+<script type="text/javascript" src="../../../www.google.com/recaptcha/api/js/recaptcha_ajax.html"></script>
+
+<script>
+    $(document).ready(function() {
+        //disableSelection(); // disabled on 14th march 
+        //select all the a tag with name equal to modal
+        $('body').on('click', 'a[name=modal]', function(e) {
+            //Cancel the link behavior
+            $('.window .close1').trigger('click');
+            e.preventDefault();
+            //Get the A tag
+            errorReportFormFill();
+
+            var id = $(this).attr('href');
+            //Get the screen height and width
+            var maskHeight = $(document).height();
+            var maskWidth = $(window).width();
+
+            //Set heigth and width to mask to fill up the whole screen
+            $('#mask').css({
+                'width': maskWidth,
+                'height': maskHeight
+            });
+            //transition effect
+            $('#mask').fadeIn(1000);
+            $('#mask').fadeTo("slow", 0.5);
+            //Get the window height and width
+            var winH = $(window).height();
+            var winW = $(window).width();
+
+            //Set the popup window to center
+
+            $(id).css('top', winH / 2 - $(id).height() / 2);
+            $(id).css('left', winW / 2 - $(id).width() / 2);
+
+            //transition effect
+            $(id).fadeIn(2000);
+        });
+
+        $('body').on("click", '#mask, .window .close1', function(e) {
+            //Cancel the link behavior        
+            e.preventDefault();
+            $('.ajaxFormSubmit').each(function() {
+                this.reset();
+            });
+            $('.errorLightbox').html('');
+            $('#mask').hide();
+            $('.window').hide();
+        });
+
+        //$('.main, .header, .footer').disableSelection();
+
+        $('.ajaxFormSubmit').submit(function(e) {
+
+            e.preventDefault();
+            var form = $(this);
+            var data = $(form).serialize();
+            var getState = $.ajax({
+                url: $(form).attr('action'),
+                cache: false,
+                type: "POST",
+                dataType: 'json',
+                data: data,
+                success: function(msg) {
+
+                    if (msg.status == 'fail') {
+                        $(form).children('.errorLightbox').html(msg.data).addClass('error01').removeClass('success');
+                    } else {
+                        $(form).children('.errorLightbox').html(msg.data).removeClass('error01').addClass('success');
+                        $('.ajaxFormSubmit').each(function() {
+                            this.reset();
+                        });
+                        setTimeout(function() {
+                            $('.close1').trigger('click');
+                        }, 3000);
+                    }
+                }
+            });
+            return false;
+        });
+
+
+        showRecaptcha("contactus_captcha");
+
+    });
+
+    function errorReportFormFill() {
+        $('.errorLink').val(window.location.href);
+        $('.user_agent').val(navigator.sayswho);
+        showRecaptcha("error_captcha");
+    }
+
+    function showRecaptcha(div) {
+        Recaptcha.create("6Lf-2eASAAAAAA6x6aiS3hRWw7n4yeJEBZb9Plkx", div, {
+            tabindex: 1,
+            theme: "clean"
+        });
+    }
+</script>
+
+<style>
+    .window {background:#ffffff url(../../images/pop-up-bg.jpg) repeat-x 0 bottom;border-radius:5px 5px 5px 5px;box-shadow:0 0 10px #000000;color:#000000;display:none;left:0;padding:26px;position:fixed;top:0;width:740px;z-index:9999}
+    .popupHeadTitle{padding:0;margin:0;}
+    #mask {background-color:#000000;display:none;left:0;overflow:visible;position:absolute;top:0;z-index:9000}
+    .close1{background:url(../../images/close-icon.png) no-repeat 0 0;display:inline-block;width:59px;height:56px;text-indent:999em;position:absolute;right:0;overflow:hidden;margin:-53px -20px 0 0;float:right}
+
+    .recaptchatable{width:485px;margin-top:15px!important}
+    .error01{color:#C00;line-height:35px}
+    .unselectable{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+    .selectable{-webkit-touch-callout:text;-webkit-user-select:text;-khtml-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
+    .notes{color:#949fb4;line-height:26px}
+    .nitiDigi{text-indent:999em;width:134px;display:inline-block;float:right;overflow:hidden}
+
+    .input_error{color:#870500;width:300px;text-align:right;float:none}
+    .success{color:
+                 #298A08;line-height:35px}
+</style>  
+<div id="map" style="position:inherit">
+</div>
+
+<style>
+body{background:#ffffff!important}
+.tabListing{padding:0;margin:0;list-style:none}
+.tabListing li{list-style:none;margin:0;padding:15px 5px 15px 26px;color:#5c5859;background:url(../images/list_bullet.html) no-repeat 9px 20px;border-bottom:1px solid #e3e2e2}
+    
+.relatedTab{float:left;display:block;font-size:13px;border:1px solid #ccc;text-decoration:none!important;color:#333333!important;background-color:#e0e0e0;padding:3px 26px;border-bottom:0;border-radius:5px 5px 0 0}
+.relatedTabActive{background-color:#B1B1B1;color:#FFFFFF!important}
+    
+.searchBoxRight{width:100%;border-radius:8px;float:right;margin-bottom:25px}
+.searchBoxRight ul.sideListing{list-style:none;padding:15px;margin:0}
+.searchBoxRight ul.sideListing li{list-style:none;padding:15px 15px 15px 53px;margin:0;border-top:1px dashed #eae6e7;background:url(../images/bullet-clock-icon.html) 13px 13px no-repeat;border-radius:0 0 8px 8px}
+.searchBoxRight p{line-height:17px;padding:0 0 13px}
+#map1, #map2{position:inherit;top:0;height:100%!important;width:100%}
+.shadow{-moz-box-shadow: 6px 6px 5px #888;
+                    -webkit-box-shadow: 6px 6px 5px #888;
+                    box-shadow: 6px 6px 5px #888;}
+.map1Year{position:absolute;z-index:1005;font-size:14px;color:#000000;font-weight:bold;background-color:#FFE694;opacity:0.7;padding:4px 7px;border-radius:4px;top:20px;right:20px}
+.leaflet-top{top:20px}
+</style>
+
+
+<body>
+
+
+        <script src="../../assets/leaflet/debug/leaflet-include.html"></script>
+        <script src="../../assets/leaflet/leaflet.spin.html"></script>
+        <script src="../../assets/leaflet/spin.min.html"></script>
+	
+        <script type="text/javascript">
+            var thm = 'red', geojson;
+            $(function() {
+                /*
+                 $("#red").click(function(){
+                 thm = 'red';
+                 geojson.resetStyle(geojson);
+                 });
+                 
+                 
+                 
+                 $("#blue").click(function(){
+                 thm = 'blue';
+                 geojson.resetStyle(geojson);
+                 });
+                 */
+                var url = "../../assets/leaflet/pc2009.html";
+
+                map.spin(true);
+                $.ajax({url: url,
+                    async: false,
+                    dataType: 'json',
+                    success: function(result) {
+                        statesData = result;
+                        geojson = L.geoJson(statesData, {
+                            style: style,
+                            onEachFeature: onEachFeature
+                        }).addTo(map);
+                        map.spin(false);
+                    },
+                    error: function() {
+                        map.spin(false);
+                    }
+                });
+                /*
+                 map.spin(true);
+                 $.ajax({url: url,async:false})
+                 .done(function() {
+                 map.spin(false);
+                 alert('done') ;
+                 geojson = L.geoJson(statesData, {
+                 style: style,
+                 onEachFeature: onEachFeature
+                 }).addTo(map);    
+                 
+                 })
+                 .error(function () {
+                 alert('error') ;
+                 map.spin(false);
+                 });                        
+                 */
+
+            });
+
+            var map = L.map('map').setView([25.04579, 75.08057], 5);
+            /*
+             var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
+             attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
+             key: 'BC9A493B41014CAABB98F0471D759707',
+             styleId: 22677
+             }).addTo(map);
+             */
+
+            // control that shows state info on hover
+            var info = L.control();
+
+            info.onAdd = function(map) {
+                this._div = L.DomUtil.create('div', 'info wax-tooltip wax-tooltip-0 wax-popup');
+                this.update();
+                return this._div;
+            };
+
+            info.update = function(props) {
+                this._div.innerHTML = '<strong>TURNOUT</strong><br /><hr />' + (props ?
+                        '<span class=c2">' + props.DPC_ALIAS + '</span><br /><hr />' + '<strong>Turnout:</strong> ' + props.DTURN_O + '%<br /><hr /><strong>Winning Party:</strong> ' + props.DWIN_PRT +
+                        ' <br /><hr /><strong>Winner:</strong> ' + props.DWIN_NM
+                        : '<strong>Hover over a PC</strong>');
+            };
+
+            info.addTo(map);
+
+
+            // get color depending on population density value
+            function getColor(d, thm) {
+
+
+                return d > 80 ? '#800026' :
+                        d > 70 ? '#BD0026' :
+                        d > 60 ? '#E31A1C' :
+                        d > 50 ? '#FC4E2A' :
+                        d > 40 ? '#FD8D3C' :
+                        d > 20 ? '#FEB24C' :
+                        d > 5 ? '#FED976' :
+                        '#FFEDA0';
+                /*
+                 if(thm == 'red'){
+                 return d > 80  ? '#800026' :
+                 d > 70  ? '#BD0026' :
+                 d > 60  ? '#E31A1C' :
+                 d > 50  ? '#FC4E2A' :
+                 d > 40  ? '#FD8D3C' :
+                 d > 20  ? '#FEB24C' :
+                 d > 5   ? '#FED976' :
+                 '#FFEDA0';
+                 }
+                 
+                 if(thm == 'green'){
+                 return d > 80  ? '#12420B' :
+                 d > 70  ? '#205E16' :
+                 d > 60  ? '#3D7F33' :
+                 d > 50  ? '#4E9E42' :
+                 d > 40  ? '#6EBC62' :
+                 d > 20  ? '#A2E098' :
+                 d > 5   ? '#CEF7C8' :
+                 '#EBF2EA';
+                 }
+                 
+                 if(thm == 'blue'){
+                 return d > 80  ? '#052187' :
+                 d > 70  ? '#112A84' :
+                 d > 60  ? '#253D91' :
+                 d > 50  ? '#475DAA' :
+                 d > 40  ? '#5E75C9' :
+                 d > 20  ? '#8096E5' :
+                 d > 5   ? '#ADBDF7' :
+                 '#F2F2FC';
+                 }
+                 */
+            }
+
+            function style(feature) {
+                return {
+                    weight: 1,
+                    opacity: 1,
+                    color: 'white',
+                    dashArray: '2',
+                    fillOpacity: 0.7,
+                    fillColor: getColor(feature.properties.DTURN_O, thm)
+                };
+            }
+
+            function highlightFeature(e) {
+                var layer = e.target;
+
+                layer.setStyle({
+                    weight: 2,
+                    color: '#2877ED',
+                    dashArray: '',
+                    fillOpacity: 0.7
+                });
+
+                if (!L.Browser.ie && !L.Browser.opera) {
+                    layer.bringToFront();
+                }
+
+                info.update(layer.feature.properties);
+            }
+
+
+            function new_highlightFeature(feature, e) {
+                var layer = geojson;
+
+                layer.setStyle({
+                    weight: 2,
+                    color: 'yellow',
+                    dashArray: '',
+                    fillOpacity: 0.7,
+                    fillColor: getColor(feature.properties.DTURN_O, thm)
+                });
+
+                if (!L.Browser.ie && !L.Browser.opera) {
+                    layer.bringToFront();
+                }
+
+                //info.update(layer.feature.properties);
+            }
+
+            var geojson;
+
+            function resetHighlight(e) {
+                geojson.resetStyle(e.target);
+                info.update();
+            }
+
+            function zoomToFeature(e) {
+                map.fitBounds(e.target.getBounds());
+            }
+
+            function onEachFeature(feature, layer) {
+
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlight,
+                    click: zoomToFeature,
+                });
+
+                //layer.bindLabel(feature.properties.DTURN_O, {noHide:true});
+
+                $("#green").click(function(feature) {
+                    thm = 'green';
+                    geojson.setStyle({
+                        weight: 2,
+                        color: 'yellow',
+                        dashArray: '',
+                        fillOpacity: 0.7,
+                        fillColor: getColor(feature.properties.DTURN_O, thm)
+                    });
+                });
+
+            }
+
+
+
+            //map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
+
+
+            var legend = L.control({position: 'bottomright'});
+
+            legend.onAdd = function(map) {
+
+                var div = L.DomUtil.create('div', 'info legend'),
+                        grades = [0, 5, 20, 40, 50, 60, 70, 80],
+                        labels = [],
+                        from, to;
+
+                for (var i = 0; i < grades.length; i++) {
+                    from = grades[i];
+                    to = grades[i + 1];
+
+                    labels.push(
+                            '<i style="background:' + getColor(from + 1, thm) + '"></i> ' +
+                            from + (to ? '&ndash;' + to : '+'));
+                }
+
+                div.innerHTML = labels.join('<br>');
+                return div;
+            };
+
+            legend.addTo(map);
+
+
+
+        </script>
+    </body>
